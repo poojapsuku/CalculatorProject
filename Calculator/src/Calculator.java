@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class Calculator implements ActionListener {
+	
+	boolean isOperatorClicked=false;
+	
+	String oldValue; 
      
 	JFrame jf;
 	JLabel displaylabel;
@@ -202,53 +206,155 @@ public class Calculator implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==sevenbutton) {
-			displaylabel.setText("7");
+			
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("7");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("7"));
+			}
+			
 		}
+		
 		else if (e.getSource()==eightbutton) {
-			displaylabel.setText("8");
+			
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("8");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("8"));
+			}
+			
 		}
 		else if (e.getSource()==ninebutton) {
-			displaylabel.setText("9");	
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("9");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("9"));
+			}	
 			
 		}
 		else if (e.getSource()==fourbutton) {
-			displaylabel.setText("4");
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("4");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("4"));
+			}
 		}
 		else if (e.getSource()==fivebutton) {
-			displaylabel.setText("5");
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("5");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("5"));
+			}
 		}
 		else if (e.getSource()==sixbutton) {
-			displaylabel.setText("6");
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("6");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("6"));
+			}
 		}
 		else if (e.getSource()==onebutton) {
-			displaylabel.setText("1");
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("1");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("1"));
+			}
 		}
 		else if (e.getSource()==twobutton) {
-			displaylabel.setText("2");
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("2");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("2"));
+			}
 		}
 		else if (e.getSource()==threebutton) {
-			displaylabel.setText("3");
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("3");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("3"));
+			}
 		}
 		else if (e.getSource()==zerobutton) {
-			displaylabel.setText("0");
+			if(isOperatorClicked)
+			{
+				displaylabel.setText("0");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("0"));
+			}
 		}
 		else if (e.getSource()==equalbutton) {
-			displaylabel.setText("=");
+			
+			String newValue=displaylabel.getText();
+			
+			float oldValueF=Float.parseFloat(oldValue);
+			
+			float newValueF=Float.parseFloat(newValue);
+			
+			float result=oldValueF+newValueF;
+			displaylabel.setText(result+"");
+			
 		}
 		else if (e.getSource()==dotbutton) {
-			displaylabel.setText(".");
+			if(isOperatorClicked)
+			{
+				displaylabel.setText(".");
+				isOperatorClicked=false;
+			}
+			else {
+				displaylabel.setText(displaylabel.getText()+("."));
+			}
+			
 		}
 		else if (e.getSource()==divbutton) {
-			displaylabel.setText("/");
+			isOperatorClicked=true;
+			
+			oldValue = displaylabel.getText();
 		}
 		else if (e.getSource()==multbutton) {
-			displaylabel.setText("*");
+			isOperatorClicked=true;
+			
+			oldValue = displaylabel.getText();
 		}
 		else if (e.getSource()==addbutton) {
-			displaylabel.setText("+");
+			
+			isOperatorClicked=true;
+		
+			oldValue = displaylabel.getText();
+			
 		}
 		else if (e.getSource()==minusbutton) {
-			displaylabel.setText("-");
+			isOperatorClicked=true;
+			
+			oldValue = displaylabel.getText();
 		}
 		else if (e.getSource()==clearbutton) {
 			displaylabel.setText(" ");
