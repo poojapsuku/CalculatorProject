@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.server.Operation;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,6 +14,7 @@ public class Calculator implements ActionListener {
 	boolean isOperatorClicked=false;
 	
 	String oldValue; 
+	int operator;
      
 	JFrame jf;
 	JLabel displaylabel;
@@ -34,6 +36,7 @@ public class Calculator implements ActionListener {
 		jf.setLayout(null);
 		jf.setSize(600, 470); //Window size
 		jf.setLocation(300, 150); // Set Window  Location
+		jf.getContentPane().setBackground(Color.black);
 		// LABEL
 		
 		displaylabel =new JLabel(); // label object
@@ -308,21 +311,10 @@ public class Calculator implements ActionListener {
 				isOperatorClicked=false;
 			}
 			else {
-				displaylabel.setText(displaylabel.getText()+("0"));
+			 	displaylabel.setText(displaylabel.getText()+("0"));
 			}
 		}
-		else if (e.getSource()==equalbutton) {
-			
-			String newValue=displaylabel.getText();
-			
-			float oldValueF=Float.parseFloat(oldValue);
-			
-			float newValueF=Float.parseFloat(newValue);
-			
-			float result=oldValueF+newValueF;
-			displaylabel.setText(result+"");
-			
-		}
+	
 		else if (e.getSource()==dotbutton) {
 			if(isOperatorClicked)
 			{
@@ -338,11 +330,13 @@ public class Calculator implements ActionListener {
 			isOperatorClicked=true;
 			
 			oldValue = displaylabel.getText();
+			operator=4;
 		}
 		else if (e.getSource()==multbutton) {
 			isOperatorClicked=true;
 			
 			oldValue = displaylabel.getText();
+			operator=3;
 		}
 		else if (e.getSource()==addbutton) {
 			
@@ -350,11 +344,49 @@ public class Calculator implements ActionListener {
 		
 			oldValue = displaylabel.getText();
 			
+			operator=1;
+			
 		}
 		else if (e.getSource()==minusbutton) {
 			isOperatorClicked=true;
 			
 			oldValue = displaylabel.getText();
+			
+			operator=2;
+		}
+	else if (e.getSource()==equalbutton) {
+			
+			String newValue=displaylabel.getText();
+			
+			float oldValueF=Float.parseFloat(oldValue);
+			
+			float newValueF=Float.parseFloat(newValue);
+			 
+			switch(operator)
+			{
+			  case 1:
+				  
+			        float resultadd=oldValueF+newValueF;
+			         displaylabel.setText(resultadd+"");
+			         break;
+			         
+			  case 2:
+				 float resultminus=oldValueF-newValueF;
+			      displaylabel.setText(resultminus+"");
+			         break;
+			         
+			  case 3:
+					 float resultmult=oldValueF*newValueF;
+				      displaylabel.setText(resultmult+"");
+				         break; 
+				         
+			  case 4:
+					 float resultdiv=oldValueF/newValueF;
+				      displaylabel.setText(resultdiv+"");
+				         break;	         
+			}
+			 
+			
 		}
 		else if (e.getSource()==clearbutton) {
 			displaylabel.setText(" ");
